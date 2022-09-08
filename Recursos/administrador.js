@@ -1,4 +1,4 @@
-const esAdmin = false
+const esAdmin = true
 
 function soloAdmins(req, res, next) {
     if (!esAdmin) {

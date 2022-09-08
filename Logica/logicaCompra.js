@@ -9,6 +9,7 @@ function agregarProductos(producto) {
         Stock:producto.stock, 
         PrecioXunidad:producto.precio, 
         Imagen:producto.img, 
+        Descripcion:producto.descripcion
     }
     Productos.push(Producto_A_Agregar)
 }; 

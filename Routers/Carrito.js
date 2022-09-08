@@ -3,9 +3,9 @@ const router = express.Router();
 let CarritoContenedor = []; 
 const {agregarCarrito, ListaCarritos, eliminarCarrito, encontrarCarrito, } = require("../Logica/logicaCarrito")
 const {encontrarProducto} = require("../Logica/logicaCompra")
-
+const {soloAdmins} = require("../Recursos/administrador")
 //=> Obtiene toda la lista de carritos
-router.get("/", (req,res) => { 
+router.get("/",soloAdmins, (req,res) => { 
     res.status(201).json({Carritos:ListaCarritos()})
 })
 

@@ -1,10 +1,10 @@
 const express = require("express"); 
 const router = express.Router(); 
 const {agregarProductos, encontrarProducto, listaProductos, eliminarProducto} = require("../Logica/logicaCompra")
-const {esAdmin} = require("../Recursos/administrador")
+const {soloAdmins} = require("../Recursos/administrador")
 
 
-router.get("/", (req,res) => { 
+router.get("/",soloAdmins, (req,res) => { 
     res.json({Productos:listaProductos()}) // => Estudiantes es productos
 }); 
 
@@ -32,6 +32,9 @@ router.post("/", (req,res) => {
     }
     if(!datosIngresados.stock){ 
         return res.status(404).json({Error:"Es necesario saber la cantidad de productos ingresados. (stock)"})
+    }
+    if(!datosIngresados.descripcion){ 
+        return res.status(404).json({Error:"Es necesario breve descripcion del producto. (descripcion)"})
     }
 
     agregarProductos(datosIngresados); 
